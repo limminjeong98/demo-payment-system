@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo-payment-system
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo-payment?serverTimezone=Asia/Seoul&useSSL=false
+    username: minjeong
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
