@@ -1,12 +1,6 @@
 package com.example.demopaymentsystem.wallet
 
-import com.example.demopaymentsystem.transaction.ChargeTransactionRequest
-import com.example.demopaymentsystem.transaction.ChargeTransactionResponse
-import com.example.demopaymentsystem.transaction.PaymentTransactionRequest
-import com.example.demopaymentsystem.transaction.PaymentTransactionResponse
-import com.example.demopaymentsystem.transaction.Transaction
-import com.example.demopaymentsystem.transaction.TransactionRepository
-import com.example.demopaymentsystem.transaction.TransactionService
+import com.example.demopaymentsystem.transaction.*
 import spock.lang.Specification
 
 import java.time.LocalDateTime
