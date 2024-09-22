@@ -2,13 +2,18 @@ spring:
   application:
     name: demo-payment-system
   datasource:
-    url: jdbc:mysql://localhost:3306/demo-payment?serverTimezone=Asia/Seoul&useSSL=false
+    url: jdbc:mysql://localhost:3306/demo-payment?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: minjeong
     password: password
+    hikari:
+      driver-class-name: com.mysql.jdbc.Driver
+      maximum-pool-size: 8
+      connection-timeout: 10000
+      minimum-idle: 4
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create # validate
     properties:
       hibernate:
         format_sql: true
