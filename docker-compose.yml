@@ -15,3 +15,12 @@ services:
       - --lower_case_table_names=1
     volumes:
       - ./mysql:/var/lib/mysql
+  order-redis-db:
+    image: redis:alpine3.20
+    ports:
+      - "6379:6379"
+    command: redis-server /usr/local/conf/redis.conf
+    volumes:
+      - ./redis/data:/data
+      - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
+
