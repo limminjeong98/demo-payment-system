@@ -15,7 +15,7 @@ public class WalletController {
     }
 
     @GetMapping("/api/users/{userId}/wallets")
-    public FindWalletResponse findWalletByUserId(@PathVariable Long userId) {
+    public FindWalletResponse findWalletByUserId(@PathVariable("userId") Long userId) {
         return walletService.findWalletByUserId(userId);
     }
 

@@ -33,6 +33,22 @@ public class PaymentProcessingService {
         approveOrder(confirmRequest.orderId());
     }
 
+    public void createChargePayment(ConfirmRequest confirmRequest) {
+        paymentGatewayService.confirm(confirmRequest);
+
+        Order order = orderRepository.findByRequestId(confirmRequest.orderId());
+
+        transactionService.charge(
+                new ChargeTransactionRequest(
+                        order.getUserId(),
+                        confirmRequest.orderId(),
+                        order.getAmount()
+                )
+        );
+
+        approveOrder(confirmRequest.orderId());
+    }
+
     /**
      * 주문 서비스 : 주문의 상태 변경 (REQUESTED -> APPROVED)
      *

@@ -39,34 +39,23 @@ public class CheckoutController {
         return "/fail";
     }
 
-    @PostMapping(value = "/confirm")
-    public ResponseEntity<Object> confirmPayment(@RequestBody ConfirmRequest confirmRequest) throws Exception {
+    @GetMapping(value = "/order-requested")
+    public String orderRequested() {
+        return "/order-requested";
+    }
 
-        // 주문 서비스
-        // 생성한 주문의 상태 변경 (WAIT -> REQUESTED)
+    @PostMapping(value = "/confirm")
+    public ResponseEntity<Object> confirmPayment(@RequestBody ConfirmRequest confirmRequest) {
+
+        // 주문 서비스 : 생성한 주문의 상태 변경 (WAIT -> REQUESTED)
         Order order = orderRepository.findByRequestId(confirmRequest.orderId());
         order.setUpdatedAt(LocalDateTime.now());
         order.setStatus(Order.Status.REQUESTED);
         orderRepository.save(order);
 
-        // 주문 서비스 -> 결제 서비스
-        // 해당 주문에 대한 결제 승인 요청
         paymentProcessingService.createPayment(confirmRequest);
-
-        // 결제 서비스 -> PG
-        // PG 승인 요청
-
-        // 결제 서비스
-        // 결제 기록 저장
-
-        // 결제 서비스 -> 주문 서비스
-        // 응답
-
-        // 주문 서비스
-        // 주문의 상태 변경 (REQUESTED -> APPROVED)
 
         return ResponseEntity.ok(order);
     }
-
 
 }

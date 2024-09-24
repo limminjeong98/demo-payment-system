@@ -1,0 +1,21 @@
+### 지갑 생성 요청
+POST http://localhost:8080/api/wallets
+Content-Type: application/json
+
+{
+  "userId": 1
+}
+
+> {%
+    client.global.set("wallet-id", response.body["id"]);
+    client.global.set("user-id", response.body["userId"]);
+    client.log("response = " + response.body);
+%}
+
+### 지갑 조회
+GET http://localhost:8080/api/users/{{user-id}}/wallets
+Content-Type: application/json
+
+> {%
+    client.log("response = " + response.body);
+%}
