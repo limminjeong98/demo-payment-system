@@ -61,11 +61,17 @@ public class TransactionService {
         return new PaymentTransactionResponse(addWalletBalanceResponse.id(), addWalletBalanceResponse.balance());
     }
 
+    /**
+     * 결제 서비스 : 결제 기록 저장
+     *
+     * @param request
+     */
     @Transactional
-    public void pgPayment() {
-        // TODO
-        final Transaction transaction = Transaction.createPgPaymentTransaction();
-        transactionRepository.save(transaction);
+    public void pgPayment(PgPaymentTransactionRequest request) {
 
+        final Transaction transaction = Transaction.createPgPaymentTransaction(
+                request.userId(), request.orderId(), request.amount()
+        );
+        transactionRepository.save(transaction);
     }
 }

@@ -18,6 +18,13 @@ public class PaymentGatewayService {
     private static final String WIDGET_SECRET_KEY = "test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6";
     private static final Base64.Encoder encoder = Base64.getEncoder();
 
+    /**
+     * 주문 서비스 -> 결제 서비스 : 해당 주문에 대한 결제 승인 요청
+     * <p>
+     * 결제 서비스 -> PG : PG 승인 요청
+     *
+     * @param confirmRequest
+     */
     public void confirm(ConfirmRequest confirmRequest) {
         // 토스페이먼츠 API는 시크릿 키를 사용자 ID로 사용하고, 비밀번호는 사용하지 않습니다.
         // 비밀번호가 없다는 것을 알리기 위해 시크릿 키 뒤에 콜론을 추가합니다.
