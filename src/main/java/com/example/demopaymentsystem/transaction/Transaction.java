@@ -65,4 +65,10 @@ public class Transaction {
         transaction.createdAt = LocalDateTime.now();
         return transaction;
     }
+
+    public static Transaction createPgPaymentTransaction() {
+        // TODO
+        Transaction transaction = new Transaction();
+        return transaction;
+    }
 }

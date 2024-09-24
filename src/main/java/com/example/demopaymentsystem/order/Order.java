@@ -35,7 +35,7 @@ public class Order {
 
     private LocalDateTime updatedAt;
 
-    enum Status {
+    public enum Status {
         WAIT, REQUESTED, APPROVED
     }
 }

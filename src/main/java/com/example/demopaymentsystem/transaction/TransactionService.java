@@ -60,4 +60,12 @@ public class TransactionService {
 
         return new PaymentTransactionResponse(addWalletBalanceResponse.id(), addWalletBalanceResponse.balance());
     }
+
+    @Transactional
+    public void pgPayment() {
+        // TODO
+        final Transaction transaction = Transaction.createPgPaymentTransaction();
+        transactionRepository.save(transaction);
+
+    }
 }
