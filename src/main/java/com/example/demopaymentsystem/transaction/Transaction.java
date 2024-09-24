@@ -65,4 +65,17 @@ public class Transaction {
         transaction.createdAt = LocalDateTime.now();
         return transaction;
     }
+
+    public static Transaction createPgPaymentTransaction(
+            Long userId, String orderId, BigDecimal amount
+    ) {
+        Transaction transaction = new Transaction();
+        transaction.userId = userId;
+        transaction.orderId = orderId;
+        transaction.amount = amount;
+        transaction.description = orderId + " 결제";
+        transaction.updatedAt = LocalDateTime.now();
+        transaction.createdAt = LocalDateTime.now();
+        return transaction;
+    }
 }
