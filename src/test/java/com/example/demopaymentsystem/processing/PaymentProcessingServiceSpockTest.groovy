@@ -36,7 +36,28 @@ class PaymentProcessingServiceSpockTest extends Specification {
 
         then:
         1 * paymentGatewayService.confirm(confirmRequest)
-        1 * transactionService.pgPayment()
+        1 * transactionService.pgPayment(_)
+        1 * orderRepository.save(order)
+    }
+
+    def "PG 결제 성공 시 충전이 잘 진행된다"() {
+        given:
+        def confirmRequest = new ConfirmRequest(
+                "paymentKey",
+                "orderId",
+                "1000"
+        )
+
+        // mock
+        Order order = new Order()
+        orderRepository.findByRequestId(confirmRequest.orderId()) >> order
+
+        when:
+        paymentProcessingService.createChargePayment(confirmRequest)
+
+        then:
+        1 * paymentGatewayService.confirm(confirmRequest)
+        1 * transactionService.charge(_)
         1 * orderRepository.save(order)
     }
 }
